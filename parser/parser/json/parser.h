@@ -544,20 +544,20 @@ int convertToASCII(std::string s)  /* turns string to ascii */
 std::uintptr_t RBX_GlobalState(uintptr_t i)  /* hacky rbx_globalstate because mellon is a faggot */
 {
 	switch (convertToASCII(gs_symbol)) {
-	case 43: return *reinterpret_cast<const std::uintptr_t*>(i + globalstate_offset) + (i + globalstate_offset);
-	case 45: return *reinterpret_cast<const std::uintptr_t*>(i + globalstate_offset) - (i + globalstate_offset);
-	case 94: return *reinterpret_cast<const std::uintptr_t*>(i + globalstate_offset) ^ (i + globalstate_offset);
-	default: std::cout << "unexpected symbol!" << std::endl; return 0;
+	case 43: return *reinterpret_cast<const std::uintptr_t*>(i + globalstate_offset) + (i + globalstate_offset); /* 43 is + in ASCII */
+	case 45: return *reinterpret_cast<const std::uintptr_t*>(i + globalstate_offset) - (i + globalstate_offset); /* 45 is - in ASCII */
+	case 94: return *reinterpret_cast<const std::uintptr_t*>(i + globalstate_offset) ^ (i + globalstate_offset); /* 94 is ^ in ASCII */
+	default: std::cout << "unexpected symbol!" << std::endl; return 0;  /* did not expect this symbol so we return 0 */
 	}
 }
 
 std::uintptr_t RBX_LuaState(uintptr_t i) /* hacky rbx_luastate because mellon is a faggot */
 {
 	switch (convertToASCII(gs_symbol)) {
-	case 43: return *reinterpret_cast<const std::uintptr_t*>(i + luastate_offset) + (i + luastate_offset);
-	case 45: return *reinterpret_cast<const std::uintptr_t*>(i + luastate_offset) - (i + luastate_offset);
-	case 94: return *reinterpret_cast<const std::uintptr_t*>(i + luastate_offset) ^ (i + luastate_offset);
-	default: std::cout << "unexpected symbol!" << std::endl; return 0;
+	case 43: return *reinterpret_cast<const std::uintptr_t*>(i + luastate_offset) + (i + luastate_offset); /* 43 is + in ASCII */
+	case 45: return *reinterpret_cast<const std::uintptr_t*>(i + luastate_offset) - (i + luastate_offset); /* 45 is - in ASCII */
+	case 94: return *reinterpret_cast<const std::uintptr_t*>(i + luastate_offset) ^ (i + luastate_offset); /* 94 is ^ in ASCII */
+	default: std::cout << "unexpected symbol!" << std::endl; return 0;  /* did not expect this symbol so we return 0 */
 	}
 }
 
