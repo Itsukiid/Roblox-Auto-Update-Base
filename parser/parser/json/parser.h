@@ -19,7 +19,7 @@ std::string replaceAll(std::string subject, const std::string& search, const std
 	return subject;
 }
 
-std::string DownloadURL(std::string URL) {
+std::string DownloadURL(std::string URL) { /* you could replace this with something like cpr or curl */
 	HINTERNET interwebs = InternetOpenA("Mozilla/5.0", INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, NULL);
 	HINTERNET urlFile;
 	std::string rtn;
@@ -44,47 +44,85 @@ std::string DownloadURL(std::string URL) {
 	return p;
 }
 
-uintptr_t GetAddress(std::string function) {
-	return JSON["addresses"][function.c_str()]["addr"].asInt();
+uintptr_t GetAddress(std::string function) { /* Gets Address */
+	return JSON["addresses"][function.c_str()]["addr"].asInt(); /* equivalent to addresses.function.addr in json  */
 }
 
-std::string GetCCV(std::string function) {
-	return JSON["addresses"][function.c_str()]["ccv"].asString();
+/* 
+
+{
+   "addresses":{
+      "function":{
+         "addr":18325792, //gets this right here 18325792
+         "ccv":"__fastcall",
+         "retcheck":false,
+         "isapartoflua":false,
+         "aob":"",
+         "args":"int a1, int a2",
+         "mask":"",
+         "typedef":"int"
+      }
+   }
 }
 
-int GetType(std::string offset) {
-	return JSON["offsets"]["types"][offset.c_str()].asInt();
+*/
+
+std::string GetCCV(std::string function) { /* Gets CCV */
+	return JSON["addresses"][function.c_str()]["ccv"].asString(); /* equivalent to addresses.function.ccv in json  */
 }
 
-int GetRbxOffset(std::string offset) {
+/* 
+
+{
+   "addresses":{
+      "function":{
+         "addr":18325792, 
+         "ccv":"__fastcall", //gets this right here __fastcall
+         "retcheck":false,
+         "isapartoflua":false,
+         "aob":"",
+         "args":"int a1, int a2",
+         "mask":"",
+         "typedef":"int"
+      }
+   }
+}
+
+*/
+
+int GetType(std::string offset) { /* Gets Type */
+	return JSON["offsets"]["types"][offset.c_str()].asInt(); /* equivalent to offsets.types.offset in json  */
+}
+
+int GetRbxOffset(std::string offset) { /* Gets Roblox Offset */
 	return JSON["offsets"]["roblox_offsets"][offset.c_str()].asInt();
 }
 
-int GetLuaOffset(std::string offset) {
+int GetLuaOffset(std::string offset) { /* Gets Lua State Offsets */
 	return JSON["offsets"]["luastate_offsets"][offset.c_str()].asInt();
 }
 
-int GetCallOffset(std::string offset) {
+int GetCallOffset(std::string offset) { /* Gets Callinfo Offset */
 	return JSON["offsets"]["callinfo_offsets"][offset.c_str()].asInt();
 }
 
-int GetGlobalOffset(std::string offset) {
+int GetGlobalOffset(std::string offset) { /* Gets Global State Offsets */
 	return JSON["offsets"]["globalstate_offsets"][offset.c_str()].asInt();
 }
 
-int GetClosureOffset(std::string offset) {
+int GetClosureOffset(std::string offset) { /* Gets Closure Offsets */
 	return JSON["offsets"]["closure_offsets"][offset.c_str()].asInt();
 }
 
-int GetTmsEnums(std::string offset) {
+int GetTmsEnums(std::string offset) { /* Gets tms enums */
 	return JSON["offsets"]["tms_enums"][offset.c_str()].asInt();
 }
 
-int GetProtoo(std::string offset) {
+int GetProtoo(std::string offset) { /* Gets protos */
 	return JSON["offsets"]["protos"][offset.c_str()].asInt();
 }
 
-std::string GetExtra(std::string offset) {
+std::string GetExtra(std::string offset) { /* Gets extras */
 	return JSON["offsets"]["extras"][offset.c_str()].asString();
 }
 
@@ -92,16 +130,55 @@ bool NeedRetcheck(std::string function) {
 	return JSON["addresses"][function.c_str()]["retcheck"].asBool();
 }
 
-bool IsApartOfLua(std::string function) {
-	return JSON["addresses"][function.c_str()]["isapartoflua"].asBool();
+bool IsApartOfLua(std::string function) { /* gets isapartoflua */
+	return JSON["addresses"][function.c_str()]["isapartoflua"].asBool();  /* equivalent to addresses.function.isapartoflua in json  */
 }
 
-std::string GetArgs(std::string function) {
-	return JSON["addresses"][function.c_str()]["args"].asString();
+/* 
+
+{
+   "addresses":{
+      "function":{
+         "addr":18325792, 
+         "ccv":"__fastcall", 
+         "retcheck":false,
+         "isapartoflua":false, //gets this right here false
+         "aob":"",
+         "args":"int a1, int a2",
+         "mask":"",
+         "typedef":"int"
+      }
+   }
+}
+
+*/
+
+std::string GetArgs(std::string function) { /* gets args */
+	return JSON["addresses"][function.c_str()]["args"].asString();  /* equivalent to addresses.function.args in json  */
 }
 
 
-void FetchJson() {
+/* 
+
+{
+   "addresses":{
+      "function":{
+         "addr":18325792, 
+         "ccv":"__fastcall", 
+         "retcheck":false,
+         "isapartoflua":false,
+         "aob":"",
+         "args":"int a1, int a2", //gets this right here int a1, int a2
+         "mask":"",
+         "typedef":"int"
+      }
+   }
+}
+
+*/
+
+
+void FetchJson() { /* gets json file from link */
 	std::unique_ptr<std::string> data(new std::string(DownloadURL(JSONLINK)));
 	const auto rawlength = static_cast<int>((*data).length());
 	JSONCPP_STRING error;
@@ -113,7 +190,7 @@ void FetchJson() {
 	}
 }
 
-void Init() {
+void Init() {  /* gets everything ready */
 	FetchJson();
 	/* Adresses And CCVs */
 	getdatamodel1_addr = GetAddress("getdatamodel1");
@@ -456,7 +533,7 @@ void Init() {
 	globalstate_offset = std::stoi(gs_offsets); // fuck you mellon
 }
 
-int convertToASCII(std::string s)
+int convertToASCII(std::string s)  /* turns string to ascii */
 {
 	for (int i = 0; i < s.length(); i++)
 	{
@@ -464,7 +541,7 @@ int convertToASCII(std::string s)
 	}
 }
 
-std::uintptr_t RBX_GlobalState(uintptr_t i)
+std::uintptr_t RBX_GlobalState(uintptr_t i)  /* hacky rbx_globalstate because mellon is a faggot */
 {
 	switch (convertToASCII(gs_symbol)) {
 	case 43: return *reinterpret_cast<const std::uintptr_t*>(i + globalstate_offset) + (i + globalstate_offset);
@@ -474,7 +551,7 @@ std::uintptr_t RBX_GlobalState(uintptr_t i)
 	}
 }
 
-std::uintptr_t RBX_LuaState(uintptr_t i)
+std::uintptr_t RBX_LuaState(uintptr_t i) /* hacky rbx_luastate because mellon is a faggot */
 {
 	switch (convertToASCII(gs_symbol)) {
 	case 43: return *reinterpret_cast<const std::uintptr_t*>(i + luastate_offset) + (i + luastate_offset);
