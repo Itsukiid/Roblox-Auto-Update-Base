@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="parser">
+      <UniqueIdentifier>{53c99c21-7b8e-4fb3-9da6-25d2841506a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="parser\json">
+      <UniqueIdentifier>{e94a1e67-0d6f-4ca9-a4aa-f55483465b35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="parser\json\include">
+      <UniqueIdentifier>{8245996c-c102-48a2-83e4-dcbb1c598d9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="parser\json\dist">
+      <UniqueIdentifier>{ef074b99-9f50-466c-b072-690bc5cf113f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="parser\json\dist\json">
+      <UniqueIdentifier>{e601a0ca-963f-43da-9ad1-3c74ca86e1ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="parser\json\include\json">
+      <UniqueIdentifier>{73b3fb1f-1694-4fc2-bd75-61e22c7020a2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="parser\main.cpp">
+      <Filter>parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parser\json\dist\jsoncpp.cpp">
+      <Filter>parser\json\dist</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="parser\offsets.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\dist\json\json.h">
+      <Filter>parser\json\dist\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\dist\json\json-forwards.h">
+      <Filter>parser\json\dist\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\include\json\allocator.h">
+      <Filter>parser\json\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\include\json\assertions.h">
+      <Filter>parser\json\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\include\json\config.h">
+      <Filter>parser\json\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\include\json\forwards.h">
+      <Filter>parser\json\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\include\json\json.h">
+      <Filter>parser\json\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\include\json\json_features.h">
+      <Filter>parser\json\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\include\json\reader.h">
+      <Filter>parser\json\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\include\json\value.h">
+      <Filter>parser\json\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\include\json\version.h">
+      <Filter>parser\json\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\include\json\writer.h">
+      <Filter>parser\json\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="parser\json\parser.h">
+      <Filter>parser\json</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
